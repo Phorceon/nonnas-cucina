@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { useUser, SignInButton } from '@clerk/nextjs';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const timeSlots = [
   '5:00 PM', '5:30 PM', '6:00 PM', '6:30 PM', '7:00 PM',
@@ -11,13 +12,15 @@ const timeSlots = [
 ];
 
 const seatingOptions = [
-  { value: 'indoor', label: 'Indoor Dining', icon: '🏠' },
-  { value: 'patio', label: 'Outdoor Patio', icon: '🌿' },
-  { value: 'private', label: 'Private Room', icon: '🍷' },
+  { value: 'indoor', label: 'Indoor Dining', icon: '🏠', priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_STANDARD_DEPOSIT },
+  { value: 'patio', label: 'Outdoor Patio', icon: '🌿', priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_STANDARD_DEPOSIT },
+  { value: 'private', label: 'Private Room', icon: '🍷', priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_VIP_DEPOSIT },
 ];
 
 export default function ReservationsPage() {
-  const { isSignedIn } = useUser();
+  const { isSignedIn, user } = useUser();
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [formData, setFormData] = useState({
     date: '',
     time: '',
@@ -32,19 +35,48 @@ export default function ReservationsPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  // Check for success/cancelled payment
+  const paymentSuccess = searchParams.get('success');
+  const paymentCancelled = searchParams.get('canceled');
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleCheckout = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+
+    try {
+      // Get the price ID for the selected seating
+      const selectedSeating = seatingOptions.find(s => s.value === formData.seating);
+      const priceId = selectedSeating?.value === 'private' 
+        ? process.env.NEXT_PUBLIC_STRIPE_PRICE_VIP_DEPOSIT 
+        : process.env.NEXT_PUBLIC_STRIPE_PRICE_STANDARD_DEPOSIT;
+
+      const response = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          reservationData: formData,
+          priceId,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to create checkout session');
+      }
+
+      const { url } = await response.json();
+      
+      // Redirect to Stripe Checkout
+      if (url) {
+        window.location.href = url;
+      }
+    } catch (error) {
+      console.error('Checkout error:', error);
+      setIsSubmitting(false);
+    }
   };
 
   const today = new Date().toISOString().split('T')[0];
@@ -326,10 +358,36 @@ export default function ReservationsPage() {
                     )}
                   </ScrollReveal>
 
+                  {/* Payment Status Messages */}
+                  {paymentSuccess && (
+                    <ScrollReveal direction="up">
+                      <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-8 flex items-center gap-4">
+                        <span className="text-2xl">✅</span>
+                        <div>
+                          <p className="text-green-800 font-medium">Payment Successful!</p>
+                          <p className="text-green-600 text-sm">Your reservation is confirmed. Check your email for details.</p>
+                        </div>
+                      </div>
+                    </ScrollReveal>
+                  )}
+
+                  {paymentCancelled && (
+                    <ScrollReveal direction="up">
+                      <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-8 flex items-center gap-4">
+                        <span className="text-2xl">⚠️</span>
+                        <div>
+                          <p className="text-yellow-800 font-medium">Payment Cancelled</p>
+                          <p className="text-yellow-600 text-sm">Your reservation was not completed. Please try again.</p>
+                        </div>
+                      </div>
+                    </ScrollReveal>
+                  )}
+
                   {/* Submit Button */}
                   <ScrollReveal direction="up" delay={0.9}>
                     <motion.button
-                      type="submit"
+                      type="button"
+                      onClick={handleCheckout}
                       disabled={isSubmitting}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
@@ -347,10 +405,13 @@ export default function ReservationsPage() {
                       ) : (
                         <>
                           <span>🍽️</span>
-                          Confirm Reservation
+                          {formData.seating === 'private' ? 'Reserve Private Room - $100' : 'Reserve Table - $25 Deposit'}
                         </>
                       )}
                     </motion.button>
+                    <p className="text-center text-[#6b7b5f] text-sm mt-3">
+                      🔒 Secure payment powered by Stripe. Deposit is refundable.
+                    </p>
                   </ScrollReveal>
                 </div>
               </motion.form>
