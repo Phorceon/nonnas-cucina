@@ -452,7 +452,7 @@ export default function MenuPage() {
                         <div className="p-6 flex flex-col justify-between flex-1">
                           <div>
                             <div className="flex justify-between items-start mb-2">
-                              <h3 className="text-xl font-serif font-bold text-[#3d2914] group-hover:text-[#c25e3e] transition-colors">
+                              <h3 className="text-xl font-serif font-bold text-[#3d2914] group-hover:text-[#e06342] transition-colors duration-300 ease-in-out">
                                 {item.name}
                               </h3>
                               <span className="text-xl font-bold text-[#c25e3e] whitespace-nowrap">

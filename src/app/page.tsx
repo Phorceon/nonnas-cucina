@@ -227,7 +227,7 @@ export default function HomePage() {
                   </div>
                   <div className="p-6">
                     <div className="flex justify-between items-start mb-3">
-                      <h3 className="text-xl font-serif font-bold text-[#3d2914]">
+                      <h3 className="text-xl font-serif font-bold text-[#3d2914] group-hover:text-[#e06342] transition-colors duration-300 ease-in-out">
                         {dish.name}
                       </h3>
                       <span className="text-2xl font-bold text-[#c25e3e]">
