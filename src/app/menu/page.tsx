@@ -4,7 +4,23 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ScrollReveal } from '@/components/ScrollReveal';
 
-const menuCategories = {
+interface MenuItem {
+  name: string;
+  description: string;
+  price: string;
+  image: string;
+  vegetarian?: boolean;
+  serves?: string;
+}
+
+interface MenuCategory {
+  title: string;
+  subtitle: string;
+  icon: string;
+  items: MenuItem[];
+}
+
+const menuCategories: Record<string, MenuCategory> = {
   antipasti: {
     title: 'Antipasti',
     subtitle: 'Appetizers',

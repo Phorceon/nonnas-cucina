@@ -52,22 +52,32 @@ export async function POST(req: Request) {
 
   if (eventType === 'user.created') {
     const { id, email_addresses, first_name, last_name, image_url } = evt.data
-    
+
     const primaryEmail = email_addresses.find((e: any) => e.id === evt.data.primary_email_address_id)?.email_address || email_addresses[0]?.email_address
 
-    try {
-      await db.collection('users').doc(id).set({
+    // Only sync to Firestore if Firebase is configured
+    if (db) {
+      try {
+        await db.collection('users').doc(id).set({
+          id,
+          email: primaryEmail || null,
+          firstName: first_name || null,
+          lastName: last_name || null,
+          imageUrl: image_url || null,
+          createdAt: new Date().toISOString(),
+        })
+        console.log(`User ${id} successfully synced to Firestore`)
+      } catch (error) {
+        console.error('Error syncing user to Firestore:', error)
+        return new Response('Error syncing user', { status: 500 })
+      }
+    } else {
+      console.log('Firebase not configured - user data logged but not synced:', {
         id,
-        email: primaryEmail || null,
-        firstName: first_name || null,
-        lastName: last_name || null,
-        imageUrl: image_url || null,
-        createdAt: new Date().toISOString(),
+        email: primaryEmail,
+        firstName: first_name,
+        lastName: last_name,
       })
-      console.log(`User ${id} successfully synced to Firestore`)
-    } catch (error) {
-      console.error('Error syncing user to Firestore:', error)
-      return new Response('Error syncing user', { status: 500 })
     }
   }
 
