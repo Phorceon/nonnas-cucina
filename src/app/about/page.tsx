@@ -10,31 +10,31 @@ const timeline = [
     year: '1952',
     title: 'The Beginning',
     description: 'Nonna Maria opens her small kitchen to neighbors in Florence, serving traditional Tuscan dishes passed down through generations.',
-    image: 'https://images.unsplash.com/photo-1556910103-1c02745a30bf?w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1556910103-1c02745a30bf?w=600',
   },
   {
     year: '1968',
     title: 'A Family Legacy',
     description: 'The recipes are passed to Nonna\'s daughter, Sofia, who expands the menu while preserving the authentic flavors of home.',
-    image: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600',
   },
   {
     year: '1985',
     title: 'Crossing Oceans',
     description: 'The family immigrates to America, bringing with them nothing but their cherished recipes and unwavering commitment to quality.',
-    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600',
   },
   {
     year: '1992',
     title: 'Nonna\'s Cucina Opens',
     description: 'The first official restaurant opens in New York, quickly becoming a beloved destination for authentic Italian cuisine.',
-    image: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=600',
   },
   {
     year: 'Today',
     title: 'Continuing the Tradition',
     description: 'Three generations later, we continue to honor Nonna Maria\'s legacy with the same recipes, passion, and love for Italian cooking.',
-    image: 'https://images.unsplash.com/photo-1556910103-1c02745a30bf?w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1556910103-1c02745a30bf?w=600',
   },
 ];
 
@@ -43,29 +43,29 @@ const team = [
     name: 'Chef Antonio Rossi',
     role: 'Executive Chef & Owner',
     bio: 'Grandson of Nonna Maria, Antonio trained in Michelin-starred kitchens across Italy before returning to honor his family\'s legacy.',
-    image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=600',
   },
   {
     name: 'Sofia Benedetti',
     role: 'Pastry Chef',
     bio: 'Great-granddaughter of Nonna Maria, Sofia creates desserts that perfectly balance tradition with modern techniques.',
-    image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=600',
   },
   {
     name: 'Marco Gentile',
     role: 'Sommelier',
     bio: 'With over 20 years of experience, Marco curates our extensive wine collection featuring the finest Italian vintages.',
-    image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=600',
   },
 ];
 
 const gallery = [
-  { src: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80', alt: 'Restaurant interior' },
-  { src: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&q=80', alt: 'Chef preparing pasta' },
-  { src: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=800&q=80', alt: 'Dining area' },
-  { src: 'https://images.unsplash.com/photo-1556910103-1c02745a30bf?w=800&q=80', alt: 'Kitchen' },
-  { src: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&q=80', alt: 'Wine selection' },
-  { src: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&q=80', alt: 'Fresh ingredients' },
+  { src: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800', alt: 'Restaurant interior' },
+  { src: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800', alt: 'Chef preparing pasta' },
+  { src: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=800', alt: 'Dining area' },
+  { src: 'https://images.unsplash.com/photo-1556910103-1c02745a30bf?w=800', alt: 'Kitchen' },
+  { src: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800', alt: 'Wine selection' },
+  { src: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800', alt: 'Fresh ingredients' },
 ];
 
 export default function AboutPage() {
@@ -90,7 +90,7 @@ export default function AboutPage() {
           className="absolute inset-0"
         >
           <img
-            src="https://images.unsplash.com/photo-1556910103-1c02745a30bf?w=1920&q=80"
+            src="https://images.unsplash.com/photo-1556910103-1c02745a30bf?w=1920"
             alt="Nonna cooking"
             className="w-full h-full object-cover"
           />
@@ -205,7 +205,7 @@ export default function AboutPage() {
                 className="relative"
               >
                 <img
-                  src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&q=80"
+                  src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800"
                   alt="Traditional Italian cooking"
                   className="rounded-xl shadow-2xl w-full"
                 />

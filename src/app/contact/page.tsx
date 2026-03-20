@@ -75,7 +75,7 @@ export default function ContactPage() {
       <section className="relative h-[50vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1552566626-52f8b828add9?w=1920&q=80"
+            src="https://images.unsplash.com/photo-1552566626-52f8b828add9?w=1920"
             alt="Contact background"
             className="w-full h-full object-cover"
           />

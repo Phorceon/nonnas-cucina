@@ -141,7 +141,7 @@ export function Footer() {
           className="border-t border-[#3d2914]/30 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4"
         >
           <p className="text-[#f5f0eb]/60 text-sm">
-            © {new Date().getFullYear()} Nonna&apos;s Cucina. All rights reserved.
+            © 2024 Nonna&apos;s Cucina. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm">
             <Link href="#" className="text-[#f5f0eb]/60 hover:text-[#d4a574] transition-colors">

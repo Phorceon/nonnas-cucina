@@ -55,7 +55,7 @@ export default function ReservationsPage() {
       <section className="relative h-[50vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920&q=80"
+            src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920"
             alt="Restaurant interior"
             className="w-full h-full object-cover"
           />

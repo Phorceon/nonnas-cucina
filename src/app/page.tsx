@@ -11,21 +11,21 @@ const featuredDishes = [
     name: 'Spaghetti Carbonara',
     description: 'Guanciale, pecorino romano, farm egg, black pepper',
     price: '$24',
-    image: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?w=800',
     category: 'Primi',
   },
   {
     name: 'Osso Buco alla Milanese',
     description: 'Braised veal shanks, saffron risotto, gremolata',
     price: '$42',
-    image: 'https://images.unsplash.com/photo-1544025152-870d97f1181e?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1544025152-870d97f1181e?w=800',
     category: 'Secondi',
   },
   {
     name: 'Tiramisù Classico',
     description: 'Espresso-soaked ladyfingers, mascarpone, cocoa',
     price: '$14',
-    image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=800',
     category: 'Dolci',
   },
 ];
@@ -77,7 +77,7 @@ export default function HomePage() {
             muted
             playsInline
             className="w-full h-full object-cover"
-            poster="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1920&q=80"
+            poster="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1920"
           >
             <source src="https://videos.pexels.com/video-files/5926268/5926268-uhd_2560_1440_25fps.mp4" type="video/mp4" />
           </video>
@@ -274,7 +274,7 @@ export default function HomePage() {
                   className="relative z-10 rounded-xl overflow-hidden shadow-2xl"
                 >
                   <img
-                    src="https://images.unsplash.com/photo-1556910103-1c02745a30bf?w=800&q=80"
+                    src="https://images.unsplash.com/photo-1556910103-1c02745a30bf?w=800"
                     alt="Nonna cooking"
                     className="w-full h-[500px] object-cover"
                   />
@@ -422,7 +422,7 @@ export default function HomePage() {
       <section className="py-24 px-6 relative overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920&q=80"
+            src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920"
             alt="Restaurant interior"
             className="w-full h-full object-cover"
           />
