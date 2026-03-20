@@ -2,10 +2,12 @@ import { headers } from 'next/headers';
 import { stripe } from '@/lib/stripe';
 import { db } from '@/lib/firebase-admin';
 import { NextResponse } from 'next/server';
+import Stripe from 'stripe';
 
 export async function POST(req: Request) {
   const body = await req.text();
-  const signature = headers().get('stripe-signature') as string;
+  const headersList = await headers();
+  const signature = headersList.get('stripe-signature') as string;
 
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
@@ -26,7 +28,7 @@ export async function POST(req: Request) {
   // Handle the event
   switch (event.type) {
     case 'checkout.session.completed': {
-      const session = event.data.object as typeof stripe.checkout.sessions.Session;
+      const session = event.data.object as Stripe.Checkout.Session;
       
       if (session.payment_status === 'paid') {
         const { clerkUserId, reservationData } = session.metadata || {};
@@ -58,31 +60,31 @@ export async function POST(req: Request) {
     }
 
     case 'customer.subscription.created': {
-      const subscription = event.data.object as typeof stripe.subscriptions.Subscription;
+      const subscription = event.data.object as Stripe.Subscription;
       console.log('✅ Subscription created:', subscription.id);
       break;
     }
 
     case 'customer.subscription.updated': {
-      const subscription = event.data.object as typeof stripe.subscriptions.Subscription;
+      const subscription = event.data.object as Stripe.Subscription;
       console.log('✅ Subscription updated:', subscription.id);
       break;
     }
 
     case 'customer.subscription.deleted': {
-      const subscription = event.data.object as typeof stripe.subscriptions.Subscription;
+      const subscription = event.data.object as Stripe.Subscription;
       console.log('✅ Subscription deleted:', subscription.id);
       break;
     }
 
     case 'payment_intent.succeeded': {
-      const paymentIntent = event.data.object as typeof stripe.paymentIntents.PaymentIntent;
+      const paymentIntent = event.data.object as Stripe.PaymentIntent;
       console.log('✅ PaymentIntent succeeded:', paymentIntent.id);
       break;
     }
 
     case 'payment_intent.payment_failed': {
-      const paymentIntent = event.data.object as typeof stripe.paymentIntents.PaymentIntent;
+      const paymentIntent = event.data.object as Stripe.PaymentIntent;
       console.log('❌ PaymentIntent failed:', paymentIntent.id);
       break;
     }

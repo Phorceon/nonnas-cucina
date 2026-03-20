@@ -88,7 +88,7 @@ export async function POST(req: Request) {
   if (eventType === 'user.deleted') {
     const { id } = evt.data
 
-    if (db) {
+    if (db && id) {
       try {
         await db.collection('users').doc(id).delete()
         console.log(`✅ User ${id} successfully deleted from Firestore`)
