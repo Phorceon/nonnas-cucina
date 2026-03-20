@@ -1,6 +1,5 @@
 import { headers } from 'next/headers';
 import { stripe } from '@/lib/stripe';
-import { db } from '@/lib/firebase-admin';
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
@@ -23,6 +22,13 @@ export async function POST(req: Request) {
   } catch (err) {
     console.error('❌ Webhook signature verification failed:', err);
     return NextResponse.json({ error: 'Webhook signature verification failed' }, { status: 400 });
+  }
+
+  // Dynamic import Firebase Admin only if credentials are available
+  let db = null;
+  if (process.env.FIREBASE_PROJECT_ID && process.env.FIREBASE_PRIVATE_KEY?.includes('-----BEGIN')) {
+    const { db: firebaseDb } = await import('@/lib/firebase-admin');
+    db = firebaseDb;
   }
 
   // Handle the event

@@ -1,7 +1,6 @@
 import { Webhook } from 'svix'
 import { headers } from 'next/headers'
 import { WebhookEvent } from '@clerk/nextjs/server'
-import { db } from '@/lib/firebase-admin'
 
 export async function POST(req: Request) {
   const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET
@@ -39,6 +38,13 @@ export async function POST(req: Request) {
   }
 
   const eventType = evt.type
+
+  // Dynamic import Firebase Admin only if credentials are available
+  let db = null;
+  if (process.env.FIREBASE_PROJECT_ID && process.env.FIREBASE_PRIVATE_KEY?.includes('-----BEGIN')) {
+    const { db: firebaseDb } = await import('@/lib/firebase-admin');
+    db = firebaseDb;
+  }
 
   if (eventType === 'user.created') {
     const { id, email_addresses, first_name, last_name, image_url } = evt.data

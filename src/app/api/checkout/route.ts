@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
 import { stripe } from '@/lib/stripe';
-import { db } from '@/lib/firebase-admin';
 
 export async function POST(req: Request) {
   try {
@@ -15,6 +14,13 @@ export async function POST(req: Request) {
 
     if (!priceId) {
       return NextResponse.json({ error: 'Price ID required' }, { status: 400 });
+    }
+
+    // Dynamic import Firebase Admin only if credentials are available
+    let db = null;
+    if (process.env.FIREBASE_PROJECT_ID && process.env.FIREBASE_PRIVATE_KEY?.includes('-----BEGIN')) {
+      const { db: firebaseDb } = await import('@/lib/firebase-admin');
+      db = firebaseDb;
     }
 
     // Get or create Stripe customer
