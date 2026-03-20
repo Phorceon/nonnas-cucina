@@ -18,7 +18,7 @@ const featuredDishes = [
     name: 'Osso Buco alla Milanese',
     description: 'Braised veal shanks, saffron risotto, gremolata',
     price: '$42',
-    image: 'https://images.unsplash.com/photo-1544025152-870d97f1181e?w=800',
+    image: 'https://images.unsplash.com/photo-1600891964092-4316c288032e?w=800',
     category: 'Secondi',
   },
   {
@@ -274,7 +274,7 @@ export default function HomePage() {
                   className="relative z-10 rounded-xl overflow-hidden shadow-2xl"
                 >
                   <img
-                    src="https://images.unsplash.com/photo-1556910103-1c02745a30bf?w=800"
+                    src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800"
                     alt="Nonna cooking"
                     className="w-full h-[500px] object-cover"
                   />

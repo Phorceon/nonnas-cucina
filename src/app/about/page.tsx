@@ -10,7 +10,7 @@ const timeline = [
     year: '1952',
     title: 'The Beginning',
     description: 'Nonna Maria opens her small kitchen to neighbors in Florence, serving traditional Tuscan dishes passed down through generations.',
-    image: 'https://images.unsplash.com/photo-1556910103-1c02745a30bf?w=600',
+    image: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600',
   },
   {
     year: '1968',
@@ -34,7 +34,7 @@ const timeline = [
     year: 'Today',
     title: 'Continuing the Tradition',
     description: 'Three generations later, we continue to honor Nonna Maria\'s legacy with the same recipes, passion, and love for Italian cooking.',
-    image: 'https://images.unsplash.com/photo-1556910103-1c02745a30bf?w=600',
+    image: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600',
   },
 ];
 
@@ -63,7 +63,7 @@ const gallery = [
   { src: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800', alt: 'Restaurant interior' },
   { src: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800', alt: 'Chef preparing pasta' },
   { src: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=800', alt: 'Dining area' },
-  { src: 'https://images.unsplash.com/photo-1556910103-1c02745a30bf?w=800', alt: 'Kitchen' },
+  { src: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800', alt: 'Kitchen' },
   { src: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800', alt: 'Wine selection' },
   { src: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800', alt: 'Fresh ingredients' },
 ];
@@ -90,7 +90,7 @@ export default function AboutPage() {
           className="absolute inset-0"
         >
           <img
-            src="https://images.unsplash.com/photo-1556910103-1c02745a30bf?w=1920"
+            src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1920"
             alt="Nonna cooking"
             className="w-full h-full object-cover"
           />
